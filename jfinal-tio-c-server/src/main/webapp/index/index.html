@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	首页
+	<form action="#" method="post">
+		<div
+			style="height: 500px; width: 100%; border: 1 solid; background-color: gray; overflow: scroll;"
+			id="msgAre"></div>
+		<p>
+			推送是userID：<input type="text" name="username" maxlength="16"
+				id="username" />
+		</p>
+		<p>
+			推送的内容：<input type="text" name="body" maxlength="16" id="sendMsg" />
+		</p>
+		<p>
+			<input type="button" value="推送" onclick="cc()" /><input
+				type="button" value="刷新" onclick="checkSubmit()" />
+		</p>
+	</form>
+</body>
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+	
+	function inputTest(){
+		//先保存div中原来的html
+		var toUsername = $("#username").val();
+		var html = document.getElementById("msgAre").innerHTML;
+		var seperator1 = "-";
+		var seperator = "：";
+		var message = $("#sendMsg").val();
+		var datatime = getNowFormatDate();
+		//再跟你想追加的代码加到一起插入div中
+		document.getElementById("msgAre").innerHTML = html + "--推送--"
+				+ toUsername + "  " + datatime + seperator + message + "<br/>"
+				+ "等待中......." + "<br/>";
+	}
+	function checkIn() {
+		//先保存div中原来的html
+		var toUsername = $("#username").val();
+		var message = $("#sendMsg").val();
+		/* var html = document.getElementById("msgAre").innerHTML;
+		var seperator1 = "-";
+		var seperator = "：";
+		var datatime = getNowFormatDate();
+		//再跟你想追加的代码加到一起插入div中
+		document.getElementById("msgAre").innerHTML = html + "--推送--"
+				+ toUsername + "  " + datatime + seperator + message + "<br/>"
+				+ "等待中......." + "<br/>"; */
+		sendMess(toUsername,message);
+		/* $.ajax({  
+		       type: "POST",   //提交的方法
+		       url:"One", //提交的地址  
+		       data:{"username":toUsername,"message":message},
+		       error: function(date) {  //成功
+		             alert(data); data.responseText   //就将返回的数据显示出来
+		            alert(date.message);
+		       }  
+		    }); */
+		   /*  $.post("One", function(data) { alert(data); },"json"); */
+	}
+	function sendMess(toUsername,message){
+		$.ajax({
+			url : 'One',
+			data : {
+				"username" : toUsername,
+				"message" : message
+			},
+			type : 'POST',
+			async:false,
+			dataType : 'json',
+			success : function(date) {
+				/* alert(date.successMsg); */
+				var html = document.getElementById("msgAre").innerHTML;
+				document.getElementById("msgAre").innerHTML = html +toUsername+"--回复："+date.successMsg+ "<br/>";
+			},error:function(){
+				var html = document.getElementById("msgAre").innerHTML;
+				document.getElementById("msgAre").innerHTML = html +"超时回复！"+ "<br/>";
+			}
+		}); 
+	}
+
+	/* function checkSubmit() {
+		var html = document.getElementById("msgAre").innerHTML;
+		var seperator1 = "-";
+		var seperator = "：";
+		var fromUserName = "zhangsan";
+		var toUsername = "lisi";
+		var message = "adasdasd";
+		var data = getNowFormatDate();
+		 //先保存div中原来的html   plushData
+		 $.ajax({  
+	            type: "GET",   //提交的方法
+	            url:"plushData", //提交的地址  
+	            success: function(data) {  //成功
+	                 alert(data);  
+	            //就将返回的数据显示出来
+	           message=data;
+				//再跟你想追加的代码加到一起插入div中
+	         } });
+		document.getElementById("msgAre").innerHTML = html + "--来自--"
+		+ toUsername + "  " + data + seperator + message + "<br/>";
+	      
+	} */
+
+	function getNowFormatDate() {
+		var date = new Date();
+		var seperator1 = "-";
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		var strDate = date.getDate();
+		var strMin = date.getMinutes();
+		var strHou = date.getHours();
+		var strSs = date.getSeconds();
+		if (month >= 1 && month <= 9) {
+			month = "0" + month;
+		}
+		if (strDate >= 0 && strDate <= 9) {
+			strDate = "0" + strDate;
+		}
+		var currentdate = year + seperator1 + month + seperator1 + strDate
+				+ "  " + strHou + seperator1 + strMin + seperator1 + strSs;
+		return currentdate;
+	}
+	
+	function cc(){
+		inputTest();
+		checkIn();
+	}
+</script>
+</html>
