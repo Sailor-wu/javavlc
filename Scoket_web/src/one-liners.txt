@@ -1,0 +1,4 @@
+使用组播套接字发送数据的过程是首先用MulticastSocket()构造器创建MulticastSocket类，
+然后利用MulticastSocket类的joinGroup()方法加入一个组播组，
+之后创建DatagramPacket数据包，
+最后调用 MulticastSocket类的send()方法发送组播包

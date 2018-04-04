@@ -33,13 +33,14 @@ public class HelloController extends Controller {
 	 * 多个 sendToAll 获取serverGroupContext 所有的用户组
 	 */
 	public void group() throws UnsupportedEncodingException {
-		String type = getPara("all");
+//		String type = getPara("all");
 		String mess = getPara("text");
 		ShowcasePacket packet = new ShowcasePacket();
 		packet.setType(Type.GROUP_MSG_RESP);
 		packet.setBody(Json.toJson(mess).getBytes(ShowcasePacket.CHARSET));
 		ServerGroupContext group = ShowcaseServerStarter.serverGroupContext;
 		Aio.sendToAll(group, packet);
+		renderJson();
 	}
 
 	/**
