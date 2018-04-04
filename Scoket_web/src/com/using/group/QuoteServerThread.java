@@ -33,7 +33,7 @@ public class QuoteServerThread extends Thread {
 		try {
 			socket = new DatagramSocket(8888);
 			// 创建要发送组播的消息
-			reader = new BufferedReader(new FileReader("D:\\eclipseWorkspace\\Scoket_web\\src\\one-liners.txt"));
+			reader = new BufferedReader(new FileReader("one-liners.txt"));
 		} catch (SocketException e) {
 			System.out.println("socket通道异常！");
 			e.printStackTrace();
