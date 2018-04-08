@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+	<form action="getData" method="get">
+		时间：<input type="text" name="time" id="time"> <input
+			type="button" onclick="checkData()" id="getData" value="获取" />
+	</form>
+</body>
+<script type="text/javascript">
+	/* function checkData() {
+		$.get("http://v.juhe.cn/calendar/year", {
+			year : "2018",
+			key : "d19cb6cb44a20ba71cccebf7e8fe71e4"
+		}, function(data) {
+			alert("Data Loaded: " + data);
+		});
+	} */
+	function checkData() {
+		var url = 'http://v.juhe.cn/calendar/year';
+		$.ajax(url, {
+			data : {
+				'year' : '2018',
+				'key' : 'd19cb6cb44a20ba71cccebf7e8fe71e4'
+			},
+			dataType : 'jsonp',
+			crossDomain : true,
+			success : function(data) {
+				/* alert(data); */
+				/* var data = eval("(" + data + ")"); */
+				var dataList = data.result.data.holidaylist;
+				for (var i = 0; i < dataList.length; i++) {
+					alert(dataList[i].name)
+				}
+			}
+		});
+	}
+</script>
+</html>
