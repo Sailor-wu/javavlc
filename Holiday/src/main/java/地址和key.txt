@@ -1,0 +1,16 @@
+网址：https://www.juhe.cn/docs/api/id/177
+APPKEY：d19cb6cb44a20ba71cccebf7e8fe71e4
+
+格式：http://v.juhe.cn/calendar/day?date=2015-1-1&key=您申请的appKey
+
+年： http://v.juhe.cn/calendar/year    year	string	是	指定年份,格式为YYYY,如:2015
+月：http://v.juhe.cn/calendar/month    year-month	string	是	指定月份,格式为YYYY-MM,如月份和日期小于10,则取个位,如:2012-1
+日：http://v.juhe.cn/calendar/day      date	string	是	指定日期,格式为YYYY-MM-DD,如月份和日期小于10,则取个位,如:2012-1-1
+
+
+获取不正常的休息日和工作日
+
+按照月份取：              http://www.easybots.cn/api/holiday.php?m=201801  m   string  指定月份  201801
+检查一个日期是否为节假日 http://www.easybots.cn/api/holiday.php?d=20180101 d   string  指定日期  20180101
+
+ack ：68baa6381efe586f2f84f948c853d1b1   这个没有用到
