@@ -33,9 +33,33 @@ public class HolidayController extends Controller {
 	private HolidayService service = new HolidayService();
 
 	private List<String> holidays = new ArrayList<>();
+	private List<String> dataWeek = new ArrayList<>();
 
 	public void index() {
 	}
+
+	/**
+	 * 获取所有的星期六天
+	 * @throws ParseException 
+	 */
+	void getAllWeek() throws ParseException {
+		DateFormat df = new SimpleDateFormat("yyyyMMdd");
+		String startTime = startYear + "0101";
+		Date date = df.parse(startTime);
+		int day = date.getDay();
+		int startSatOffset = 6 - day;
+		if (day == 0) {
+			System.out.println("此年的第一天是星期天");
+		}
+		for (int i = 0; i <= 365 / 7; i++) {
+			Date satday = df.parse(startYear + "010" + (1 + startSatOffset + i * 7));
+			Date sunday = df.parse(startYear + "010" + (1 + startSatOffset + (i * 7 + 1)));
+			System.out.println(df.format(satday) + "----" + df.format(sunday));
+			dataWeek.add(df.format(satday));
+			dataWeek.add(df.format(sunday));
+		}
+	}
+
 	/**
 	 * 根据接口获取全年的假日信息 1 到 12 月
 	 */
@@ -117,9 +141,11 @@ public class HolidayController extends Controller {
 
 	/**
 	 * 页面请求处理方法
+	 * @throws ParseException 
 	 */
-	public void getData() {
+	public void getData() throws ParseException {
 		startYear = getParaToInt("time");
+		getAllWeek();// 加载所有的星期六天
 		getAllYearHoliday(startYear);// 初始化加载所有假期信息
 		HashSet<String> set = new HashSet<>();
 		set.addAll(holidays);
@@ -188,26 +214,25 @@ public class HolidayController extends Controller {
 		return false;
 	}
 
-	public static List<String> dataWeek = new ArrayList<>();
-	static {
-		try {
-			DateFormat df = new SimpleDateFormat("yyyyMMdd");
-			Date date = df.parse("20180101");
-			int day = date.getDay();
-			int startSatOffset = 6 - day;
-			if (day == 0) {
-				System.out.println("此年的第一天是星期天");
-			}
-			for (int i = 0; i <= 365 / 7; i++) {
-				Date satday = df.parse("2018010" + (1 + startSatOffset + i * 7));
-				Date sunday = df.parse("2018010" + (1 + startSatOffset + (i * 7 + 1)));
-				System.out.println(df.format(satday) + "----" + df.format(sunday));
-				dataWeek.add(df.format(satday));
-				dataWeek.add(df.format(sunday));
-			}
-		} catch (Exception e) {
-		}
-
+//	static {
+//		try {
+//			DateFormat df = new SimpleDateFormat("yyyyMMdd");
+//			Date date = df.parse("20180101");
+//			int day = date.getDay();
+//			int startSatOffset = 6 - day;
+//			if (day == 0) {
+//				System.out.println("此年的第一天是星期天");
+//			}
+//			for (int i = 0; i <= 365 / 7; i++) {
+//				Date satday = df.parse("2018010" + (1 + startSatOffset + i * 7));
+//				Date sunday = df.parse("2018010" + (1 + startSatOffset + (i * 7 + 1)));
+//				System.out.println(df.format(satday) + "----" + df.format(sunday));
+//				dataWeek.add(df.format(satday));
+//				dataWeek.add(df.format(sunday));
+//			}
+//		} catch (Exception e) {
+//		}
+//
 	}
 	// Collection ret = CollectionUtils.intersection(list1, list2);
 	// Collection union = CollectionUtils.union( a, b ); //并集
@@ -323,4 +348,4 @@ public class HolidayController extends Controller {
 	 * public static void main(String[] args) { for (String string :
 	 * HolidayController.dataWeek) { System.out.println("信息：" + string); } }
 	 */
-}
+//}
