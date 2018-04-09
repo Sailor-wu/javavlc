@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -69,16 +68,16 @@ public class TestHoliday {
 //			System.out.println("节日名字："+year.getName()+"节日开始时间："+year.getStartday());
 //		} 
 		
-		MonthDetail detail= getDate.getMonth("2018-5");
-		System.out.println(detail.getYear_month());
-		System.out.println(detail.getHoliday().size());
-		for (Month month : detail.getHoliday()) {
+		MonthDetail detail1= getDate.getMonth("2018-5");
+		System.out.println(detail1.getYear_month());
+		System.out.println(detail1.getHoliday().size());
+		for (Month month : detail1.getHoliday()) {
 			System.out.println(month.getName()+"休息："+month.getDesc()+"\n"+month.getFestival()+"\n"+month.getRest());
 			System.out.println();
 		}
 		
-//		Detail detail = getDate.getDetail("2018-4-9");
-//		System.out.println(detail.getLunarYear()+"\n"+detail.getAnimalsYear()+"\n"+detail.getAvoid()+"\n"+detail.getLunar()+"\n"+detail.getSuit()+"\n"+detail.getWeekday()+"\n"+detail.getYear_month());
+		Detail detail = getDate.getDetail("2018-4-9");
+		System.out.println(detail.getLunarYear()+"\n"+detail.getAnimalsYear()+"\n"+detail.getAvoid()+"\n"+detail.getLunar()+"\n"+detail.getSuit()+"\n"+detail.getWeekday()+"\n"+detail.getYear_month());
 	}
 
 	/**

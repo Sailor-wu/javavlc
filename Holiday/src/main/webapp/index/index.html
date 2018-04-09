@@ -6,9 +6,9 @@
 <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
 </head>
 <body>
-	<form action="getData" method="get">
+	<form action="holiday/getData" method="get">
 		时间：<input type="text" name="time" id="time"> <input
-			type="button" onclick="checkData()" id="getData" value="获取" />
+			type="submit" id="getData" value="获取" />
 	</form>
 </body>
 <script type="text/javascript">
@@ -20,7 +20,7 @@
 			alert("Data Loaded: " + data);
 		});
 	} */
-	function checkData() {
+	/* function checkData() {
 		var url = 'http://v.juhe.cn/calendar/year';
 		$.ajax(url, {
 			data : {
@@ -37,7 +37,7 @@
 					alert(dataList[i].name)
 				}
 			}
-		});
+		}); */
 	}
 </script>
 </html>

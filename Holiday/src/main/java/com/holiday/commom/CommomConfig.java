@@ -1,6 +1,8 @@
 package com.holiday.commom;
 
 import com.holiday.controller.IndexController;
+import com.holiday.easybots.bean.Holiday;
+import com.holiday.easybots.controller.HolidayController;
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -45,6 +47,7 @@ public class CommomConfig extends JFinalConfig {
 		//添加路由映射规则  把hello请求发送到HelloController类处理
 //		me.add("/", IndexController.class,"/index");
 		me.add("/",IndexController.class,"/index");
+		me.add("/holiday",HolidayController.class);
 //		me.add("/tuser", TUserController.class);
 	}
 
@@ -63,13 +66,14 @@ public class CommomConfig extends JFinalConfig {
 	 */
 	@Override
 	public void configPlugin(Plugins me) {
-//		DruidPlugin dp = new DruidPlugin("jdbc:mysql://localhost/jfinaltest",
-//				"why", "123456");
-//				me.add(dp);//添加阿里巴巴的数据源插件
-//				ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
-//				me.add(arp);//添加ActiveRecord数据库操作插件
+		DruidPlugin dp = new DruidPlugin("jdbc:mysql://localhost/holiday",
+				"why", "123456");
+				me.add(dp);//添加阿里巴巴的数据源插件
+				ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+				me.add(arp);//添加ActiveRecord数据库操作插件
 				//关联数据库和实体类信息  t_user数据库表   TUser.class实体类
-//				arp.addMapping("t_user", TUser.class);
+//				arp.addMapping("holiday", Holiday.class);
+				arp.addMapping("holiday", Holiday.class);
 	}
 	/**
 	 * 用来配置JFinal的全局拦截器，全局拦截器拦截所有action请求，除非使用 "@clear"注解在Controller中清除

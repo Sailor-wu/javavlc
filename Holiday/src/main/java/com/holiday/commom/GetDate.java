@@ -51,11 +51,9 @@ public class GetDate {
 	}
 	private List<Year> getByYear(String year) {
 		List<Year> years=new ArrayList<>();
-//		String httpUrl="http://v.juhe.cn/calendar";
 		BufferedReader reader = null;
 		String result = null;
 		StringBuffer sbf = new StringBuffer();
-//		httpUrl = httpUrl + "/year?year=" + year + "&key="+KEY;
 		try {
 			URL url = new URL(HTTPURL_YEAR+"?year=" + year + "&key="+KEY);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
