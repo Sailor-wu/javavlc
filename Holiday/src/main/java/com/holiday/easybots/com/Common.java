@@ -8,9 +8,12 @@ import java.net.URL;
 import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
-
+/**
+ * testMain
+ * @author why
+ * @时间 2018年4月9日
+ */
 public class Common {
-	
 	public static void main(String[] args) {
 		//http://www.easybots.cn/api/holiday.php?d=20130101
 		//http://www.easybots.cn/api/holiday.php?d=20130101,20130103,20130105,20130201

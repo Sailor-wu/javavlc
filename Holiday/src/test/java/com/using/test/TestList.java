@@ -1,13 +1,8 @@
 package com.using.test;
-
 import static org.junit.Assert.*;
-
 import java.text.ParseException;
-
 import org.junit.Test;
-
 import com.holiday.easybots.controller.HolidayController;
-
 public class TestList {
 
 	@Test
@@ -15,5 +10,4 @@ public class TestList {
 		HolidayController controller=new HolidayController();
 		controller.getData();
 	}
-
 }

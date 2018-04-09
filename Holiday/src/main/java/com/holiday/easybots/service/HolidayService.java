@@ -15,7 +15,7 @@ public class HolidayService {
 	
 	public Page<Holiday> getAllUsers(Integer pageNo,Integer pageSize){
 		return holidayDao.paginate(pageNo, 
-				pageSize, "select *"," from t_user order by id desc ");
+				pageSize, "select *"," from table order by id desc ");
 	}
 	
 	public  boolean deleteTuser(int id){
