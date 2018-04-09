@@ -49,6 +49,8 @@ public class HolidayController extends Controller {
 		int startSatOffset = 6 - day;
 		if (day == 0) {
 			System.out.println("此年的第一天是星期天");
+			Date sunday = df.parse(startYear + "0101");
+			dataWeek.add(df.format(sunday));
 		}
 		for (int i = 0; i <= 365 / 7; i++) {
 			Date satday = df.parse(startYear + "010" + (1 + startSatOffset + i * 7));
@@ -124,6 +126,7 @@ public class HolidayController extends Controller {
 	 */
 	public void getData() throws ParseException {
 		startYear = getParaToInt("time");
+		endDate=Integer.valueOf(startYear+"1231");
 		getAllWeek();// 加载所有的星期六天
 		getAllYearHoliday(startYear);// 初始化加载所有假期信息
 		HashSet<String> set = new HashSet<>();
@@ -153,12 +156,19 @@ public class HolidayController extends Controller {
 		for (String string : listB) {
 			int num = Integer.valueOf(string);
 			if (endDate >= num) {
-				System.out.println("这些是非星期六天，但是可以休息的数据：" + num);
-				Holiday holiday = new Holiday();
-				buffer.append("{\"" + num + "\",2}");
-				holiday.put("special_date", num);
-				holiday.put("date_type", 2);
-				holiday.save();
+				for (int i = 0; i < dataWeek.size(); i++) {
+					if (!dataWeek.contains(num+"")) {
+						System.out.println("这些是非星期六天，但是可以休息的数据：" + num);
+						Holiday holiday = new Holiday();
+						buffer.append("{\"" + num + "\",2}");
+						holiday.put("special_date", num);
+						holiday.put("date_type", 2);
+						holiday.save();
+						break;
+					}else{
+						continue;
+					}
+				}
 			}
 		}
 		HashSet<String> setResult = new HashSet<>();
