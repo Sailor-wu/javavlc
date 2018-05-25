@@ -1,0 +1,13 @@
+server: 
+  port: 8888
+spring: 
+  pro: linux
+test: 
+  user: 
+    name: wuhaiyuan
+---
+spring: 
+  pro: window
+test: 
+  user: 
+    name: wuhaiyuanwindow

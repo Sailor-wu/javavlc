@@ -47,6 +47,10 @@ public class HolidayController extends Controller {
 		Date date = df.parse(startTime);
 		int day = date.getDay();
 		int startSatOffset = 6 - day;
+		/**
+		 * 由于个别年份，开始第一天就是礼拜天，所以需要把第一天加入到星期六天的集合里面
+		 * 不然到后面做比较的时候，容易出现数据的冗余错误
+		 */
 		if (day == 0) {
 			System.out.println("此年的第一天是星期天");
 			Date sunday = df.parse(startYear + "0101");

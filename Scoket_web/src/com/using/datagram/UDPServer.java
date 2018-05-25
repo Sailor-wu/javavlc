@@ -36,6 +36,7 @@ public class UDPServer {
 				//组装信息
 				System.out.println("来自："+name+"的机子，端口是："+port+",发送的消息是："+messData);
 			}
+			
 		} catch (SocketException e) {
 			System.out.println("接收Socket通道有问题"+e.getMessage());
 			e.printStackTrace();
